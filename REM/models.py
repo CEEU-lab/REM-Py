@@ -89,9 +89,9 @@ def plot_predicted_vs_test(x_ax, y_test, preds, predicted_name):
     plt.figure(figsize=(14, 5), dpi=80)
     plt.plot(x_ax, y_test, linewidth=0.75, label="test")
     plt.plot(x_ax, preds, '--', linewidth=0.5, color='red', label="predicted",)
-    plt.title("San Francisco zone {} - Test and Predicted data".format(predicted_name))
+    plt.title("{} - Test and Predicted data".format(predicted_name))
     plt.legend()
-    plt.xlabel('Zone idx')
+    plt.xlabel('Parcel idx')
     plt.ylabel('{} (USD)'.format(predicted_name))
     plt.grid(True)
     plt.show();
