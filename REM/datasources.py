@@ -13,7 +13,7 @@ def caba_parcelas(source_idx=1):
         print('Downloading parcels from bsas data ...')
         par_root = 'https://cdn.buenosaires.gob.ar/datosabiertos/datasets/secretaria-de-desarrollo-urbano/parcelas/parcelas.geojson'
     else:
-        print('Reading parcels from local dir ...')
+        print('Leyendo parcelas desde directorio local ...')
         par_root = '../data/BarOli_V1/layers/parcelas copiar copiar.shp'
 
     parcelas = gpd.read_file(par_root)
@@ -75,11 +75,11 @@ def comunas(idx=[4,8]):
     zona_sur = comunas[comunas['COMUNAS'].isin(idx)].copy().to_crs(4326)
     return zona_sur
 
-def BO_Area():
+def thiner_bound(path):
     '''
     Polígono del área de estudio
     '''
-    mascara = gpd.read_file('../data/BarOli_V1/layers/P_BP_AREA_5347.shp')
+    mascara = gpd.read_file(path)
     return mascara
 
 def build_study_area(parcelas, mascara):
