@@ -7,27 +7,9 @@ bigquery:
   credentials: 'config/cred_path'
 
 xgboost:
-  params:
-    - colsample_bytree': 0.3,
-      learning_rate: 0.13333333333333333,
-      max_depth: 2,
-      alpha: 8,
-      num_boost_round: 200
-  expvars:
-    - nearest_price_1
-    - nearest_area_1
-    - 'nearest_price_2'
-    - 'nearest_area_2'
-    - 'superficie_total'
-    - 'superficie_cubierta'
-    - 'frente'
-    - 'fondo'
-    - 'propiedad_horizontal'
-    - 'pisos_bajo_rasante'
-    - 'pisos_sobre_rasante'
-    - 'unidades_funcionales'
-    - 'locales'
-    - 'vuc'
-    - 'cantidad_puertas'
-    - 'lon_ctroid'
-    - 'lat_ctroid'
+  expvars_names:
+    - 'listar_variables_explicativas'
+
+  expvars_df: 'root_a_df_con_variables_explicativas'
+  terrenos_root: 'root_a_modelo_entrenado_oferta_terrenos'
+  deptos_root: 'root_a_modelo_entrenado_oferta_deptos'
