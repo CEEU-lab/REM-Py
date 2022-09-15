@@ -1,5 +1,6 @@
 import pandas as pd
 from scipy.spatial import distance
+from sklearn.impute import KNNImputer
 import numpy.ma as ma
 from shapely.geometry import Point
 import numpy as np
@@ -57,9 +58,9 @@ def ajuste_inflacion(gdf, inflation):
 
     return gdf.copy()
 
-# 2. Obtiene los N vecinos mas cercanos en un mismo GeodataFrame de Poligonos
-def neighbor_fields(poly_gdf, proj, N=2, field_name='usdm2'):
-    # TODO: parametrizar para crear el valor de cualquier columna vecina
+# 2. Obtiene los N vecinos mas cercanos en un mismo GeodataFrame de Poligonos.
+# Agrega columnas con el valor del N vecino, a partir de las 30000 filas se desestabiliza por memoria
+def neighbor_fields(poly_gdf, proj, N_NEAREST=2, field_name='usdm2'):
     poly_gdf['area'] = poly_gdf.to_crs(proj).geometry.area
     valid_geom_point = poly_gdf[['geometry','smp',field_name, 'area']].copy()
     valid_geom_point['geometry'] = valid_geom_point.geometry.apply(lambda geom: Point(geom.centroid.x,
@@ -67,7 +68,6 @@ def neighbor_fields(poly_gdf, proj, N=2, field_name='usdm2'):
     coords = np.stack(valid_geom_point.geometry.apply(lambda x: [x.x, x.y]))
     distance_matrix = ma.masked_where((dist := distance.cdist(*[coords] * 2)) == 0, dist)
 
-    N_NEAREST = 2
     nearest_id_cols = list(map("nearest_id_{}".format, range(1, N_NEAREST + 1)))
     nearest_idx_cols = list(map("nearest_smp_{}".format, range(1, N_NEAREST + 1)))
 
@@ -88,3 +88,21 @@ def neighbor_fields(poly_gdf, proj, N=2, field_name='usdm2'):
         valid_geom_point[price_col] = valid_geom_point['nearest_id_{}'.format(i)].map(smp_ngbor_price)
         valid_geom_point[area_col] = valid_geom_point['nearest_id_{}'.format(i)].map(smp_ngbor_area)
     return valid_geom_point
+
+# 3. Obtiene un promedio de los N vecinos mas cercanos en un mismo dataset
+# Devuelve una nueva columna con valores imputados. Si se agrega mas de
+# un nombre en "observation_cols" se consideran esos valores en la busqueda del vecino mas cercano
+def neighbors_mean(base_data, observation_cols, n, devuelve_matriz=False):
+    '''
+    base_data (df): DataFrame con las columnas indicadas en observation_cols
+    observation_cols (list): lista de str con nombres de columnas.
+    n (int): cantidad de vecinos
+    '''
+    to_impute = base_data[observation_cols].copy()
+    imputer = KNNImputer(n_neighbors=n)
+    impute_data = imputer.fit_transform(to_impute)
+
+    if devuelve_matriz:
+        return impute_data
+    else:
+        return impute_data[:,0] # devuelve el array con promedios imputados
