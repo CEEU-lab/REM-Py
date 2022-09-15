@@ -50,11 +50,18 @@ def get_query(bbox,sd='2021-01-01',ed='2022-08-14'):
                                bbox['maxx'][0], bbox['minx'][0])
     return query_string
 
-def get_bbox_sur():
-    comunas = gpd.read_file('https://storage.googleapis.com/python_mdg/carto_cursos/comunas.zip')
-    zona_sur = comunas[comunas['COMUNAS'].isin([4,8])].copy().to_crs(4326)
+def get_bbox(comunas_idx):
+    '''
+    Devuelve el bounding box para un conjunto de comunas.
+    ...
+    Args:
 
-    # limite comunas 4 y 8
+    comunas_idx (list): int indicando comuna idx
+    '''
+    comunas = gpd.read_file('https://storage.googleapis.com/python_mdg/carto_cursos/comunas.zip')
+    zona_sur = comunas[comunas['COMUNAS'].isin(comuna_idx)].copy().to_crs(4326)
+
+    # limite exterior comunas
     zona_sur['cons'] = 0
     sur = zona_sur.dissolve(by='cons')
     return sur.bounds
@@ -91,11 +98,12 @@ def properaty_observed_prices(propiedades, parcelas, property_type):
     label_pclas = gpd.sjoin(propiedades, parcelas[['smp','geometry']], predicate='within')
     rates = pd.read_csv('../data/usa_inflation.csv')
     propiedades_pclas = ajuste_inflacion(gdf=label_pclas, inflation=rates) # crea "price_adj"
-
+    print('')
     print("Cantidad de avisos informan superficie:")
     print("***************************************")
     print(propiedades_pclas.surface_total.isna().value_counts())
 
+    # TODO: Implementar diccionario con distintas posibilidades de agrupamiento
     if property_type == 'demolicion':
         print("Tipo de oferta: Terreno")
         producto_inmobiliario = ['Casa','PH','Lote']
