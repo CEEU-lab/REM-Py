@@ -22,11 +22,20 @@ pip install -r requirements-dev.txt
 
 **Patrones de precios**
 
-Aprender de precios observados para distintos productos inmobiliarios (terrenos, departamentos, alquileres, etc.) ...
+Entre las principales funcionalidades, el modelador inmobiliario busca facilitar
+el aprendizaje de precios observados para distintos productos inmobiliarios:
+
+ * terrenos,
+ * departamentos
+ * casas y ph
+ * alquileres
+ * depósitos
+ * etc.) ...
 
 ![precios_observados](REM/img/observed_prices.png)
 
-... y ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
+... entrenar modelos para la resolución de problemas de regresión y 
+ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
 
 <p float="right">
   <img src="/REM/img/to_predict.png" width="400" />
