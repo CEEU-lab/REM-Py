@@ -20,7 +20,7 @@ pip install -r requirements-dev.txt
 
 ```
 
-** Patrones de precios **
+**Patrones de precios**
 
 Aprender de precios observados para distintos productos inmobiliarios (terrenos, departamentos, alquileres, etc.) ...
 
@@ -29,6 +29,6 @@ Aprender de precios observados para distintos productos inmobiliarios (terrenos,
 ... y ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
 
 <p float="left">
-  <img src="/REM/img/to_predict.png" width="100" />
-  <img src="/REM/img/preidcted.png" width="100" /> 
+  <img src="/REM/img/to_predict.png" width="200" />
+  <img src="/REM/img/predicted.png" width="200" /> 
 </p>
