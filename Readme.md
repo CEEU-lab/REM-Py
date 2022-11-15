@@ -1,6 +1,6 @@
 # **R**eal**E**state**M**odeler
 
-Templates para análisis de patrones inmobiliarios. 
+Templates para análisis de patrones inmobiliarios.
 
 * Root
 
@@ -19,3 +19,16 @@ python setup.py develop
 pip install -r requirements-dev.txt
 
 ```
+
+** Patrones de precios **
+
+Aprender de precios observados para distintos productos inmobiliarios (terrenos, departamentos, alquileres, etc.) ...
+
+![precios_observados](REM/img/observed_prices.png)
+
+... y ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
+
+<p float="left">
+  <img src="/REM/img/to_predict.png" width="100" />
+  <img src="/REM/img/preidcted.png" width="100" /> 
+</p>
