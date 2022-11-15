@@ -28,7 +28,7 @@ Aprender de precios observados para distintos productos inmobiliarios (terrenos,
 
 ... y ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
 
-<p float="left">
-  <img src="/REM/img/to_predict.png" width="200" />
-  <img src="/REM/img/predicted.png" width="200" /> 
+<p float="right">
+  <img src="/REM/img/to_predict.png" width="400" />
+  <img src="/REM/img/predicted.png" width="400" />
 </p>
