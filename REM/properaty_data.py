@@ -59,7 +59,7 @@ def get_bbox(comunas_idx):
     comunas_idx (list): int indicando comuna idx
     '''
     comunas = gpd.read_file('https://storage.googleapis.com/python_mdg/carto_cursos/comunas.zip')
-    zona_sur = comunas[comunas['COMUNAS'].isin(comuna_idx)].copy().to_crs(4326)
+    zona_sur = comunas[comunas['COMUNAS'].isin(comunas_idx)].copy().to_crs(4326)
 
     # limite exterior comunas
     zona_sur['cons'] = 0
