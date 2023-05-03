@@ -106,3 +106,6 @@ runs/
 
 # mypy
 .mypy_cache/
+
+# personal keys and config stuff
+config/
