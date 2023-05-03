@@ -1,6 +1,6 @@
-# **R**eal**E**state**M**odeler
+# **Real**Estate**Modeller
 
-Templates para análisis de patrones inmobiliarios.
+Python tools for Real Estate market analysis
 
 * Root
 
@@ -20,23 +20,20 @@ pip install -r requirements-dev.txt
 
 ```
 
-**Patrones de precios**
+**Price patterns**
 
-Entre las principales funcionalidades, el modelador inmobiliario busca facilitar
-el aprendizaje de precios observados para distintos productos inmobiliarios:
+Train models based on observed point patterns to predict:
 
- * terrenos,
- * departamentos
- * casas y ph
- * alquileres
- * depósitos
- * etc.) ...
+ * urban land value usd/m2,
+ * built usd/m2,
+ * residential and non-residential usd/m2,
 
+The following example shows `XGboost` estimation for parcels land value:
+
+1. Downloads a Real Estate dataset to match `Point` and `Polygon` geometries 
 ![precios_observados](REM/img/observed_prices.png)
 
-... entrenar modelos para la resolución de problemas de regresión y 
-ensayar tasaciones a distintos niveles de agregación geográfica (parcelas, manzanas, etc.)
-
+2. Group average values at Polygon level, train your model and predict your blanks
 <p float="right">
   <img src="/REM/img/to_predict.png" width="400" />
   <img src="/REM/img/predicted.png" width="400" />
