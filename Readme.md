@@ -1,4 +1,4 @@
-# **Real Estate Modeller
+# Real Estate Modeller
 
 Python tools for Real Estate market analysis
 
